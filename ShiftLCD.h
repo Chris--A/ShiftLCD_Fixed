@@ -38,10 +38,9 @@
   #include "Arduino.h"
 #else
   #include "WProgram.h"
+  #include <inttypes.h>
+  #include "Print.h"  
 #endif
-
-#include <inttypes.h>
-#include "Print.h"
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
