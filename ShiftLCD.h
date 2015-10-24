@@ -121,7 +121,7 @@ public:
   
   #if ARDUINO >= 100
 	virtual size_t write(uint8_t);
-  #elif
+  #else
 	virtual void write(uint8_t);
   #endif
   

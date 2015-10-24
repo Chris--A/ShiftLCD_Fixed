@@ -256,7 +256,7 @@ inline void ShiftLCD::command(uint8_t value) {
 	  send(value, true);
 	  return 1;
 	}
-#elif
+#else
 	inline void ShiftLCD::write(uint8_t value) {
 	  send(value, true);
 	}
