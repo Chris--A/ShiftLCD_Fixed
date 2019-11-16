@@ -137,6 +137,8 @@ private:
   uint8_t _latch_pin;	//shift register latch pin
   uint8_t _smart_enable;
 
+  uint8_t _old_data;    //last value
+  
   uint8_t _displayfunction;
   uint8_t _displaycontrol;
   uint8_t _displaymode;

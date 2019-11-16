@@ -50,6 +50,7 @@ void ShiftLCD::init(uint8_t dp, uint8_t cp, uint8_t lp, uint8_t mode)
 	_data_pin = dp;
 	_clock_pin = cp;
 	_latch_pin = lp;
+	_old_data = 0;
 	
 	_backlight = LCD_BL_PIN;
   
@@ -273,7 +274,8 @@ void ShiftLCD::updateBacklight(void) {
 		digitalWrite(_latch_pin, LOW);
 	} else {
 		digitalWrite(_latch_pin, HIGH);
-		shiftOut(_data_pin, _clock_pin, LSBFIRST, _backlight);
+		//shiftOut(_data_pin, _clock_pin, LSBFIRST, _backlight);
+		shiftOut(_data_pin, _clock_pin, LSBFIRST, _old_data | _backlight);
 		digitalWrite(_latch_pin, LOW);
 	}
 }
@@ -317,8 +319,10 @@ void ShiftLCD::write4bits(uint8_t value, uint8_t mode) {
 	digitalWrite(_latch_pin, HIGH);
 	shiftOut(_data_pin, _clock_pin, LSBFIRST, data | cmd);
 	digitalWrite(_latch_pin, LOW);
-	
 	delayMicroseconds(100);
+
+	_old_data = data | cmd;
+
 }
 
 void ShiftLCD::write8bits(uint8_t value, uint8_t mode) {
